@@ -1,4 +1,3 @@
--i https://pypi.org
 Flask
 Flask-Cors
 Flask-Migrate
@@ -9,3 +8,8 @@ gunicorn
 psycopg2-binary
 python-dotenv
 email-validator
+alembic
+cloudinary
+flask-admin
+flask-swagger
+wtforms
