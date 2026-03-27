@@ -18,3 +18,4 @@ flask-swagger
 python-dotenv
 pyyaml
 wtforms
+markupsafe==2.0.1
