@@ -8,21 +8,38 @@ export const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/signup`, {
-            method: "POST",
-            body: JSON.stringify({ email, password }),
-            headers: { "Content-Type": "application/json" }
-        });
 
-        if (response.ok) {
-            navigate("/login"); 
-        } else {
-            alert("Error al crear el usuario. Revisa si el email ya existe.");
+        // 1. VALIDACIONES DE SEGURIDAD
+        if (password.length < 6) {
+            alert("La contraseña debe tener al menos 6 caracteres");
+            return;
         }
-    };
+        if (!email.includes("@") || email.length < 5) {
+            alert("Por favor, introduce un correo electrónico válido");
+            return;
+        }
+
+        // 2. PETICIÓN AL BACKEND
+        try {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/signup`, {
+                method: "POST",
+                body: JSON.stringify({ email, password }),
+                headers: { "Content-Type": "application/json" }
+            });
+
+            if (response.ok) {
+                alert("¡Cuenta creada con éxito! Ahora puedes iniciar sesión.");
+                navigate("/login");
+            } else {
+                alert("Error al crear el usuario. Revisa si el email ya existe.");
+            }
+        } catch (error) {
+            console.error("Error en el registro:", error);
+        }
+    }; // <--- AQUÍ CERRAMOS LA FUNCIÓN CORRECTAMENTE
 
     return (
-        <div className="auth-container"> {/* Fondo azul degradado del CSS */}
+        <div className="auth-container">
             <div className="card auth-card p-5 shadow" style={{ width: "100%", maxWidth: "420px" }}>
                 <div className="text-center mb-4">
                     <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: "60px", height: "60px" }}>

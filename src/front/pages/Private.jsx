@@ -34,14 +34,14 @@ export const Private = () => {
 
                 {/* Cabecera del Panel */}
                 <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 border-bottom pb-4 text-center text-md-start">
-    <div>
-        <h2 className="fw-bold mb-1">Panel de Control</h2>
-        <p className="text-muted mb-3 mb-md-0">Bienvenido, <span className="text-primary fw-bold">{userEmail}</span></p>
-    </div>
-    <span className="badge bg-success p-2 px-4 rounded-pill shadow-sm">
-        <i className="fa-solid fa-circle-check me-2"></i>Sesión Activa
-    </span>
-</div>
+                    <div>
+                        <h2 className="fw-bold mb-1">Panel de Control</h2>
+                        <p className="text-muted mb-3 mb-md-0">Bienvenido, <span className="text-primary fw-bold">{userEmail}</span></p>
+                    </div>
+                    <span className="badge bg-success p-2 px-4 rounded-pill shadow-sm">
+                        <i className="fa-solid fa-circle-check me-2"></i>Sesión Activa
+                    </span>
+                </div>
 
                 {/* Grid de Widgets / Estadísticas Rápidas */}
                 <div className="row g-4 mb-5">
@@ -96,6 +96,15 @@ export const Private = () => {
                     </p>
                     <button className="btn btn-primary mt-3 px-4 rounded-pill shadow-sm">
                         Explorar Documentación
+                    </button>
+                    <button
+                        className="btn btn-danger px-4 rounded-pill shadow-sm"
+                        onClick={() => {
+                            sessionStorage.removeItem("token");
+                            navigate("/login");
+                        }}
+                    >
+                        Cerrar Sesión
                     </button>
                 </div>
             </div>

@@ -23,7 +23,7 @@ app.config["JWT_SECRET_KEY"] = "super-secret-key" # Cambia esto por algo seguro
 jwt = JWTManager(app)
 app.url_map.strict_slashes = False
 
-CORS(app) 
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")

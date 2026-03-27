@@ -53,6 +53,7 @@ def handle_login():
     email = body.get("email")
     password = body.get("password")
 
+    print(f"Intento de login con: {email} y {password}")
     # Buscamos al usuario por email y password
     user = User.query.filter_by(email=email, password=password).first()
 
